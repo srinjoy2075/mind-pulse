@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Digital Wellbeing Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="hero">
+      <p class="eyebrow">A quiet audit of your feed</p>
+      <h1 class="hero-title">How's your feed<br>treating you?</h1>
+      <p class="hero-sub">Answer a few questions about your habits, sleep, and screen time. We'll estimate a wellbeing indicator from the patterns &mdash; not a diagnosis, just a mirror.</p>
+    </header>
+
+    <main class="layout">
+
+      <form id="predict-form" class="card form-card" novalidate>
+
+        <section class="form-section">
+          <div class="section-label"><span class="section-num">01</span> About you</div>
+          <div class="field-grid">
+
+            <div class="field">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" min="10" max="100" step="1" placeholder="e.g. 21" required>
+              <span class="hint">10&ndash;100</span>
+              <span class="field-error" data-error-for="age"></span>
+            </div>
+
+            <div class="field">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>Choose one</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <span class="field-error" data-error-for="gender"></span>
+            </div>
+
+            <div class="field">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" list="country-list" placeholder="e.g. India" autocomplete="off" required>
+              <datalist id="country-list"></datalist>
+              <span class="field-error" data-error-for="country"></span>
+            </div>
+
+            <div class="field">
+              <label for="academic_level">Academic level</label>
+              <select id="academic_level" name="academic_level" required>
+                <option value="" disabled selected>Choose one</option>
+                <option value="High School">High School</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+              </select>
+              <span class="field-error" data-error-for="academic_level"></span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-label"><span class="section-num">02</span> Your feed</div>
+          <div class="field-grid">
+
+            <div class="field">
+              <label for="most_used_platform">Most-used platform</label>
+              <select id="most_used_platform" name="most_used_platform" required>
+                <option value="" disabled selected>Choose one</option>
+              </select>
+              <span class="field-error" data-error-for="most_used_platform"></span>
+            </div>
+
+            <div class="field">
+              <label for="purpose_of_use">Main purpose</label>
+              <select id="purpose_of_use" name="purpose_of_use" required>
+                <option value="" disabled selected>Choose one</option>
+                <option value="Networking">Networking</option>
+                <option value="Education">Education</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="News">News</option>
+              </select>
+              <span class="field-error" data-error-for="purpose_of_use"></span>
+            </div>
+
+            <div class="field field-slider">
+              <label for="avg_daily_usage_hours">Avg. daily usage <span class="live-val" id="avg_daily_usage_hours-val">0 h</span></label>
+              <input type="range" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" step="0.25" value="3">
+              <span class="field-error" data-error-for="avg_daily_usage_hours"></span>
+            </div>
+
+            <div class="field">
+              <label for="daily_unlocks">Daily phone unlocks</label>
+              <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" step="1" placeholder="e.g. 60" required>
+              <span class="field-error" data-error-for="daily_unlocks"></span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="form-section">
+          <div class="section-label"><span class="section-num">03</span> Your day</div>
+          <div class="field-grid">
+
+            <div class="field field-slider">
+              <label for="study_hours">Study hours <span class="live-val" id="study_hours-val">0 h</span></label>
+              <input type="range" id="study_hours" name="study_hours" min="0" max="24" step="0.25" value="4">
+              <span class="field-error" data-error-for="study_hours"></span>
+            </div>
+
+            <div class="field field-slider">
+              <label for="physical_activity_hours">Physical activity <span class="live-val" id="physical_activity_hours-val">0 h</span></label>
+              <input type="range" id="physical_activity_hours" name="physical_activity_hours" min="0" max="24" step="0.25" value="1">
+              <span class="field-error" data-error-for="physical_activity_hours"></span>
+            </div>
+
+            <div class="field field-slider">
+              <label for="sleep_hours_per_night">Sleep per night <span class="live-val" id="sleep_hours_per_night-val">0 h</span></label>
+              <input type="range" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" step="0.25" value="7">
+              <span class="field-error" data-error-for="sleep_hours_per_night"></span>
+            </div>
+
+            <div class="field">
+              <label for="stress_level">Stress level</label>
+              <select id="stress_level" name="stress_level" required>
+                <option value="" disabled selected>Choose one</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Very High">Very High</option>
+              </select>
+              <span class="field-error" data-error-for="stress_level"></span>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="form-footer">
+          <p class="server-note" id="server-note"></p>
+          <button type="submit" id="submit-btn" class="submit-btn">
+            <span class="btn-label">Calculate my score</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+
+      </form>
+
+      <aside class="card result-card" id="result-card" aria-live="polite">
+        <div class="result-empty" id="result-empty">
+          <div class="gauge-ghost">
+            <svg viewBox="0 0 220 130" width="180" height="106">
+              <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="var(--border)" stroke-width="14" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p>Fill in the form &mdash; your indicator will appear here.</p>
+        </div>
+
+        <div class="result-content" id="result-content" hidden>
+          <p class="result-eyebrow">Predicted wellbeing indicator</p>
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 220 122" width="220" height="122" class="gauge-svg">
+              <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="var(--border)" stroke-width="14" stroke-linecap="round"/>
+              <path id="gauge-arc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="var(--accent-calm)" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283"/>
+              <g id="needle-group" style="transform-origin: 110px 110px; transform: rotate(-90deg);">
+                <line x1="110" y1="110" x2="110" y2="48" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="110" cy="110" r="6" fill="var(--ink)"/>
+              </g>
+            </svg>
+            <div class="gauge-number">
+              <span id="score-value">0.0</span>
+              <span class="gauge-max">/10</span>
+            </div>
+          </div>
+          <p class="result-band" id="result-band">&nbsp;</p>
+          <p class="result-blurb" id="result-blurb"></p>
+          <p class="result-disclaimer">This is a general, data-driven estimate based on the habits you entered &mdash; not a clinical or diagnostic assessment. If you're struggling, please talk to someone you trust or a mental health professional.</p>
+        </div>
+
+        <div class="result-error" id="result-error" hidden>
+          <p class="error-title">Couldn't get a prediction</p>
+          <p class="error-detail" id="error-detail"></p>
+        </div>
+      </aside>
+
+    </main>
+
+    <footer class="page-footer">
+      <p>Connected to <code id="api-base-label"></code></p>
+    </footer>
+
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
